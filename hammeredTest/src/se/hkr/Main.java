@@ -11,7 +11,8 @@ public class Main {
         
         /*
         
-        drinks.forEach(System.out::println);   - print out each item in the list of drinks the user submitted */
+        drinkList.forEach(System.out::println);   - lambda to print out each item in the list of drinks the user submitted */
 
     }
+
 }

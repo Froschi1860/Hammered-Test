@@ -17,4 +17,14 @@ public class User {
     }
 
     private BinaryOperator<Double> calcBMI = (height, weight) -> weight / Math.pow(height / 100, 2.0);
+
+
+    //public double calculateBAC(double bmi, double volume, double percentage, double rawAlcmass)
+
+    //public double timeToSobriety(double duration){
+
+       // return 0;
+    //}
+
+
 }
