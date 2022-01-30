@@ -1,7 +1,7 @@
 package se.hkr;
 
-public class Wine extends Drink implements MassOfRawAlcohol <Wine>{
+public class Wine extends Drink implements MassOfRawAlcohol <Drink>{
     Wine(double volume, double percent) { super(volume, percent); }
 
-    public void findMassOfRawAlcohol(Wine wine) {};
+    public void findMassOfRawAlcohol() {};
 }
