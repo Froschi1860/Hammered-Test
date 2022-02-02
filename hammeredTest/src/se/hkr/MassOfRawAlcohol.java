@@ -2,8 +2,8 @@ package se.hkr;
 
 @FunctionalInterface
 
-public interface MassOfRawAlcohol<T> {
-    double DENSITY = 0.789;
+public interface MassOfRawAlcohol<T extends Drink> {
+    double DENSITY_OF_ALCOHOL = 0.789;
 
-    double findMassOfRawAlcohol(Drink drink);
+    double findMassOfRawAlcohol(T drink);
 }
