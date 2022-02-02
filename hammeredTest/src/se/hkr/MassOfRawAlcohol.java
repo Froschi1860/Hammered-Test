@@ -1,7 +1,9 @@
 package se.hkr;
+
 @FunctionalInterface
 
 public interface MassOfRawAlcohol<T> {
-    final double DENSITY = 0.0;
-    void findMassOfRawAlcohol();
+    double DENSITY = 0.789;
+
+    double findMassOfRawAlcohol(Drink drink);
 }
