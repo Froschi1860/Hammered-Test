@@ -1,10 +1,14 @@
 package se.hkr;
 
-public class Liquor extends Drink implements MassOfRawAlcohol <Drink> {
-    Liquor(double volume, double percent) { super(volume, percent); }
+public class Liquor extends Drink implements MassOfRawAlcohol<Drink> {
 
-    public double findMassOfRawAlcohol( Drink drink) {
-        return this.volume * MassOfRawAlcohol.DENSITY * this.percent / 100;
+    public Liquor (double volumeInMillilitres, double alcoholContentInPercent) {
+        super(volumeInMillilitres, alcoholContentInPercent);
+    }
+
+    @Override
+    public double findMassOfRawAlcohol(Drink liquor) {
+        return liquor.volumeInMillilitres * MassOfRawAlcohol.DENSITY_OF_ALCOHOL * liquor.alcoholContentInPercent / 100;
     }
 
         /* Ranges: Volume = 0.04 - 0.10
