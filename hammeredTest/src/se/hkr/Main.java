@@ -1,23 +1,18 @@
 package se.hkr;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
-        User user = null;
-        main.printMenu(user);
+        User user = main.userMenu();
         main.drinkMenu(user);
     }
 
-    void printMenu(User user) {
+    User userMenu() {
         boolean menuFLag = true;
         Scanner input = new Scanner(System.in);
+        User user = null;
 
         while (menuFLag) {
             System.out.println("--- Welcome to The Hammered Test ---");
@@ -33,13 +28,12 @@ public class Main {
             user = new User(height, weight, duration, gender);
             menuFLag = false;
         }
+        return user;
     }
 
     void drinkMenu(User user) {
         boolean menuFlag = true;
         Scanner input = new Scanner(System.in);
-        double volume, alcohol;
-        String selectedDrink;
 
         while (menuFlag) {
             System.out.println("\n--- Select Drinks ---");
@@ -48,19 +42,41 @@ public class Main {
             int option = input.nextInt();
 
             switch (option) {
-                case (1) -> {
-                    selectedDrink = "Beer";
+                case (1) -> { addDrink("Beer", 0.33, 1, 2, 9, user); }
+                case (2) -> { addDrink("Liquor", 0.04, 0.10, 15, 70,user); }
+                case (3) -> { addDrink("Wine", 0.2, 0.5, 7, 15, user); }
+                case (4) -> {
+                    System.out.println("Your choose display result");
+                    System.out.printf("It will take you %.2f hours to get sober", User.calculateTimeToSobrietyInHours(user));
+                    menuFlag = false;
                 }
-                case (2) -> {
-                    selectedDrink = "Liquor";
-                }
-                case (3) -> {
-                    selectedDrink = "Wine";
-                }
-                case (4) -> System.out.println("Your choose display result");
             }
+        }
+    }
 
+    void addDrink(String drink, double volumeFloor, double volumeTop, double alcoholFloor, double alcoholTop, User user) {
+        Scanner input = new Scanner(System.in);
 
+        System.out.printf("\n --- Add %s Details ---\n", drink);
+        boolean correctInput = false;
+        while (!correctInput) {
+            System.out.printf("Volume (%.2f - %.2f cl): ", volumeFloor, volumeTop);
+            double volume = input.nextDouble();
+            System.out.printf("Alcohol percentage:  (%.2f - %.2f%%): ", alcoholFloor, alcoholTop);
+            double alcohol = input.nextDouble() / 100;
+
+            if ((volume >= volumeFloor && volume <= volumeTop) && (alcohol >= alcoholFloor / 100 && alcohol <= alcoholTop / 100)) {
+                correctInput = true;
+
+                switch (drink) {
+                    case ("Beer") -> user.getConsumedDrinks().add(new Beer(volume, alcohol));
+                    case ("Liquor") -> user.getConsumedDrinks().add(new Liquor(volume, alcohol));
+                    case ("Wine") -> user.getConsumedDrinks().add(new Wine(volume, alcohol));
+                }
+
+                System.out.printf("%s added!\n", drink);
+
+            } else System.out.println("Error Input out of range");
         }
     }
 }

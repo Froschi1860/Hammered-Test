@@ -11,6 +11,7 @@ public class User {
     private double bmi;
     private double durationOfDrinkingInHours;
     private String gender;
+
     private ArrayList<Drink> consumedDrinks = new ArrayList<>();
     private double individualWidmarkFactor;
 
@@ -44,6 +45,7 @@ public class User {
    public void setConsumedDrinks(ArrayList<Drink> consumedDrinks) {
         this.consumedDrinks = consumedDrinks;
    }
+   public ArrayList<Drink> getConsumedDrinks() { return consumedDrinks; }
 
     public void setWeightInKg(double weightInKg) {
         this.weightInKg = weightInKg;
