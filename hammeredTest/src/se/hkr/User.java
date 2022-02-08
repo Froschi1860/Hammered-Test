@@ -73,13 +73,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "It will take you %d hours to get sober" +
-                "         . .\n" +
-                "       .. . *.\n" +
-                "- -_ _-__-0oOo\n" +
-                " _-_ -__ -||||)\n" +
-                "    ______||||______\n" +
-                "~~~~~~~~~~`\"\"'" + calculateTimeToSobrietyInHours(this);
-                // ASCII art taken from ASCII art archive (source in presentation)
+        return ("""
+                --> You have had a total of %d drink(s) tonight
+                --> Your total BAC is %.3f%%
+                --> It will take you %.2f hours to get sober""").formatted(consumedDrinks.size(),
+                calculateBloodAlcoholContent(this),
+                calculateTimeToSobrietyInHours(this));
+
     }
 }
