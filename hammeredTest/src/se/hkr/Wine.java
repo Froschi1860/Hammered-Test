@@ -10,7 +10,4 @@ public class Wine extends Drink implements MassOfRawAlcohol<Drink> {
     public double findMassOfRawAlcohol(Drink wine) {
         return wine.volumeInMillilitres * MassOfRawAlcohol.DENSITY_OF_ALCOHOL * wine.alcoholContentInPercent / 100;
     }
-
-        /* Ranges: Volume = 0.2 - 0.5
-                Alcohol 7 - 15 */
 }

@@ -6,15 +6,9 @@ import java.util.function.BinaryOperator;
 public class User {
 
     public final double METABOLIC_RATE_OF_ALCOHOL = 0.015D;
-    private double weightInKg;
-    private double heightInCentimeters;
-    private double bmi;
-    private double durationOfDrinkingInHours;
+    private double weightInKg, heightInCentimeters, bmi, durationOfDrinkingInHours, individualWidmarkFactor;
     private String gender;
-
     private ArrayList<Drink> consumedDrinks = new ArrayList<>();
-    private double individualWidmarkFactor;
-
 
     public User(double heightInCentimeters, double weightInKg, double durationOfDrinkingInHours, String gender) {
         this.weightInKg = weightInKg;
@@ -25,6 +19,8 @@ public class User {
         this.individualWidmarkFactor = this.calculateIndividualWidmarkFactor(this.bmi, gender);
     }
 
+    public ArrayList<Drink> getConsumedDrinks() { return consumedDrinks; }
+
     public static double calculateBloodAlcoholContent(User user) {
         double bloodAlcoholContent =
             ((100 * calculateTotalMassOfConsumedAlcohol(user)) / (user.individualWidmarkFactor * user.weightInKg))
@@ -33,7 +29,8 @@ public class User {
     }
 
     public static double calculateTimeToSobrietyInHours(User user) {
-        return calculateTotalMassOfConsumedAlcohol(user) / user.METABOLIC_RATE_OF_ALCOHOL;
+        double result = (calculateTotalMassOfConsumedAlcohol(user) / user.METABOLIC_RATE_OF_ALCOHOL) - user.durationOfDrinkingInHours;
+        return (result > 0.0) ? result : 0.0;
     }
 
     private static double calculateTotalMassOfConsumedAlcohol (User user){
@@ -41,11 +38,6 @@ public class User {
                 .mapToDouble(drink -> drink.findMassOfRawAlcohol(drink))
                 .sum();
     }
-
-   public void setConsumedDrinks(ArrayList<Drink> consumedDrinks) {
-        this.consumedDrinks = consumedDrinks;
-   }
-   public ArrayList<Drink> getConsumedDrinks() { return consumedDrinks; }
 
     public void setWeightInKg(double weightInKg) {
         this.weightInKg = weightInKg;

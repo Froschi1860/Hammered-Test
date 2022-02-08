@@ -9,7 +9,7 @@ public class Main {
         main.drinkMenu(user);
     }
 
-    User userMenu() {
+    public User userMenu() {
         boolean menuFLag = true;
         Scanner input = new Scanner(System.in);
         User user = null;
@@ -20,7 +20,7 @@ public class Main {
             double height = input.nextDouble();
             System.out.print("Weight (in kg): ");
             double weight = input.nextDouble();
-            System.out.print("Duration (in hours): ");
+            System.out.print("Time since the first drink (in hours): ");
             double duration = input.nextDouble();
             System.out.print("Gender (M/F): ");
             String gender = input.next().toUpperCase();
@@ -31,7 +31,7 @@ public class Main {
         return user;
     }
 
-    void drinkMenu(User user) {
+    public void drinkMenu(User user) {
         boolean menuFlag = true;
         Scanner input = new Scanner(System.in);
 
@@ -42,30 +42,30 @@ public class Main {
             int option = input.nextInt();
 
             switch (option) {
-                case (1) -> { addDrink("Beer", 0.33, 1, 2, 9, user); }
-                case (2) -> { addDrink("Liquor", 0.04, 0.10, 15, 70,user); }
-                case (3) -> { addDrink("Wine", 0.2, 0.5, 7, 15, user); }
+                case (1) -> addDrink("Beer", 0.33, 1, 2, 9, user);
+                case (2) -> addDrink("Liquor", 0.04, 0.10, 15, 70, user);
+                case (3) -> addDrink("Wine", 0.2, 0.5, 7, 15, user);
                 case (4) -> {
                     System.out.println("Your choose display result");
-                    System.out.printf("It will take you %.2f hours to get sober", User.calculateTimeToSobrietyInHours(user));
+                    System.out.println(user);
                     menuFlag = false;
                 }
             }
         }
     }
 
-    void addDrink(String drink, double volumeFloor, double volumeTop, double alcoholFloor, double alcoholTop, User user) {
+    public void addDrink(String drink, double volumeFloor, double volumeTop, double alcoholFloor, double alcoholTop, User user) {
         Scanner input = new Scanner(System.in);
 
         System.out.printf("\n --- Add %s Details ---\n", drink);
         boolean correctInput = false;
         while (!correctInput) {
             System.out.printf("Volume (%.2f - %.2f cl): ", volumeFloor, volumeTop);
-            double volume = input.nextDouble();
+            double volume = Double.parseDouble(input.nextLine());
             System.out.printf("Alcohol percentage:  (%.2f - %.2f%%): ", alcoholFloor, alcoholTop);
-            double alcohol = input.nextDouble() / 100;
+            double alcohol = Double.parseDouble(input.nextLine());
 
-            if ((volume >= volumeFloor && volume <= volumeTop) && (alcohol >= alcoholFloor / 100 && alcohol <= alcoholTop / 100)) {
+            if ((volume >= volumeFloor && volume <= volumeTop) && (alcohol >= alcoholFloor && alcohol <= alcoholTop)) {
                 correctInput = true;
 
                 switch (drink) {

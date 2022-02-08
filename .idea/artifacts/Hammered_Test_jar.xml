@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Hammered-Test:jar">
+    <output-path>$PROJECT_DIR$/out</output-path>
+    <root id="archive" name="Hammered-Test_jar.jar">
+      <element id="archive" name="Hammered-Test.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="Hammered-Test" />
+      </element>
+    </root>
+  </artifact>
+</component>
