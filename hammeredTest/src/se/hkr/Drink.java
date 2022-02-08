@@ -10,4 +10,10 @@ public abstract class Drink implements MassOfRawAlcohol<Drink> {
     }
 
     public abstract double findMassOfRawAlcohol(Drink drink);
+
+    @Override
+    public String toString() {
+        return "You have had a total of %d ml and %d.2f of alcohol to drink tonight" + volumeInMillilitres + alcoholContentInPercent;
+
+    }
 }
