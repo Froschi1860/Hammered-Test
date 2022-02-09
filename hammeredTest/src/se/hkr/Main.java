@@ -15,7 +15,7 @@ public class Main {
         User user = null;
 
         while (menuFLag) {
-            System.out.println("--- Welcome to The Hammered Test ---");
+            System.out.println("--- Welcome to The Hamster Test ---");
             System.out.println("Please enter your information:");
             System.out.print("Body height (in cm): ");
             double height = input.nextDouble();
@@ -47,7 +47,7 @@ public class Main {
                 case (2) -> addDrink("Liquor", 0.04, 0.10, 15, 70, user);
                 case (3) -> addDrink("Wine", 0.2, 0.5, 7, 15, user);
                 case (4) -> {
-                    System.out.println("Your choice: Display result");
+                    System.out.println("\nYour choice: Display result");
                     System.out.println(user);
                     menuFlag = false;
                 }
