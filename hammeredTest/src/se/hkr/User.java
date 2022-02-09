@@ -29,8 +29,7 @@ public class User {
     }
 
     public static double calculateTimeToSobrietyInHours(User user) {
-        double result = (calculateTotalMassOfConsumedAlcohol(user) / user.METABOLIC_RATE_OF_ALCOHOL) - user.durationOfDrinkingInHours;
-        return (result > 0.0) ? result : 0.0;
+        return Math.max(calculateBloodAlcoholContent(user) / user.METABOLIC_RATE_OF_ALCOHOL, 0.0);
     }
 
     private static double calculateTotalMassOfConsumedAlcohol (User user){
